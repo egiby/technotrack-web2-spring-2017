@@ -11,7 +11,9 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 """
 
 import os
-from ConfigParser import ConfigParser
+
+# maybe, RawConfigParser
+from configparser import ConfigParser
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -43,6 +45,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'debug_toolbar',
     'core.apps.CoreConfig',
+    'chat',
+    'usg',
 ]
 
 MIDDLEWARE = [
