@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
@@ -7,20 +8,20 @@ class User(AbstractUser):
 
 
 class Authored(models.Model):
-    author = models.ForeignKey(User)
+    author = models.ForeignKey(settings.AUTH_USER_MODEL)
 
     class Meta:
         abstract = True
 
 
-class UnchangeableDated(models.Model):
+class ImmutableDated(models.Model):
     created = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         abstract = True
 
 
-class Dated(UnchangeableDated):
+class Dated(ImmutableDated):
     updated = models.DateTimeField(auto_now=True)
 
     class Meta:
@@ -36,9 +37,9 @@ class Named(models.Model):
 
 class FriendshipRequest(Authored, Dated):
     is_confirmed = models.BooleanField(default=False)
-    user = models.ForeignKey(User, related_name='recipient')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='recipient')
 
 
-class Friendship(UnchangeableDated):
-    first = models.ForeignKey(User, related_name='first')
-    second = models.ForeignKey(User, related_name='second')
+# class Friendship(ImmutableDated):
+#     first = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='first')
+#     second = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='second')
