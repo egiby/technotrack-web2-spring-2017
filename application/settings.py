@@ -45,8 +45,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'debug_toolbar',
     'core.apps.CoreConfig',
-    'chat',
-    'usg',
+    'chat.apps.ChatConfig',
+    'usg.apps.UsgConfig',
+    'likes.apps.LikesConfig'
 ]
 
 MIDDLEWARE = [
@@ -95,6 +96,9 @@ DATABASES = {
         'USER': config.get('db', 'USER'),
         'PASSWORD': config.get('db', 'PASSWORD'),
         'HOST': 'localhost',
+        'OPTIONS': {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+        }
     }
 }
 

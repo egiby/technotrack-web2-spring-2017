@@ -4,7 +4,7 @@ from django.db import models
 
 
 class User(AbstractUser):
-    pass
+    avatar = models.ImageField(upload_to='avatars', null=True)
 
 
 class Authored(models.Model):
