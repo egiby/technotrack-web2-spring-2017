@@ -32,7 +32,17 @@ class Content(models.Model):
 class TextContent(Content):
     text = models.TextField()
 
+    def __str__(self):
+        return self.text[:10] + '...'
+
+    class Meta:
+        verbose_name = u'Text'
+        verbose_name_plural = u'Texts'
+
 
 class Event(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     user = models.ForeignKey(settings.AUTH_USER_MODEL)
+
+    def __str__(self):
+        return 'Feed in {}\'s news'.format(self.user)
