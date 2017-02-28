@@ -40,6 +40,14 @@ class FriendshipRequest(Authored, Dated):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='recipient')
 
 
-# class Friendship(ImmutableDated):
-#     first = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='first')
-#     second = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='second')
+class Friendship(ImmutableDated):
+    first = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='friends')
+    second = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='second')
+
+    def __str__(self):
+        return str(self.first) + ' ' + str(self.second)
+
+
+def get_friends(user):
+    friendships = Friendship.objects.filter(first=user)
+    return map(lambda pair: pair.second, friendships)

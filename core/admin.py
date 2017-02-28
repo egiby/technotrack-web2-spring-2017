@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
-from .models import User, FriendshipRequest
+from .models import User, FriendshipRequest, Friendship
 
 
 @admin.register(User)
@@ -15,8 +15,6 @@ class ImmutableDatedAdmin(admin.ModelAdmin):
 
         return list(fields) + ['created']
 
-    # readonly_fields = ('created',)
-
 
 class DatedAdmin(ImmutableDatedAdmin):
     def get_readonly_fields(self, request, obj=None):
@@ -24,7 +22,6 @@ class DatedAdmin(ImmutableDatedAdmin):
                                                              obj)
 
         return list(fields) + ['updated']
-    # readonly_fields = ('created', 'updated')
 
 
 @admin.register(FriendshipRequest)
@@ -32,6 +29,6 @@ class FriendshipRequestAdmin(DatedAdmin):
     pass
 
 
-# @admin.register(Friendship)
-# class FriendshipAdmin(ImmutableDatedAdmin):
-#     pass
+@admin.register(Friendship)
+class FriendshipAdmin(ImmutableDatedAdmin):
+    pass

@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.contrib.contenttypes.fields import GenericForeignKey, \
     GenericRelation
 from django.contrib.contenttypes.models import ContentType
@@ -27,5 +28,11 @@ class Content(models.Model):
         abstract = True
 
 
+# This is only the sample. We can do any other type of content.
 class TextContent(Content):
     text = models.TextField()
+
+
+class Event(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL)
