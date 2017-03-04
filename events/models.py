@@ -21,3 +21,6 @@ class GeneratingEvent(models.Model):
                             object_id_field='event_content_id',
                             on_delete=models.CASCADE
                             )
+
+    class Meta:
+        abstract = True
