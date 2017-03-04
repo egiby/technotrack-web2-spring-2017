@@ -47,7 +47,8 @@ INSTALLED_APPS = [
     'core.apps.CoreConfig',
     'chat.apps.ChatConfig',
     'usg.apps.UsgConfig',
-    'likes.apps.LikesConfig'
+    'likes.apps.LikesConfig',
+    'events.apps.EventsConfig'
 ]
 
 MIDDLEWARE = [

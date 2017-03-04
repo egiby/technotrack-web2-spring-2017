@@ -5,13 +5,17 @@ from django.contrib.contenttypes.models import ContentType
 from django.db import models
 
 from core.models import Authored, Dated, Named
+from events.models import GeneratingEvent
 from likes.models import Like, LikeAble
 
 
-class Post(Authored, Dated, Named, LikeAble):
+class Post(Authored, Dated, Named, LikeAble, GeneratingEvent):
     content_type = models.ForeignKey(ContentType)
     content_id = models.PositiveIntegerField(null=False, default=1)
     content = GenericForeignKey('content_type', 'content_id')
+
+    def get_content(self):
+        return self.content
 
     def __str__(self):
         return self.name
@@ -38,11 +42,3 @@ class TextContent(Content):
     class Meta:
         verbose_name = u'Text'
         verbose_name_plural = u'Texts'
-
-
-class Event(models.Model):
-    post = models.ForeignKey(Post, on_delete=models.CASCADE)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL)
-
-    def __str__(self):
-        return 'Feed in {}\'s news'.format(self.user)

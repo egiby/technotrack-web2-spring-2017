@@ -3,7 +3,7 @@ from django.contrib.contenttypes.admin import GenericInlineModelAdmin
 
 from core.admin import DatedAdmin
 from likes.admin import LikeAbleAdmin
-from .models import Post, TextContent, Event
+from .models import Post, TextContent
 
 
 class PostInline(admin.TabularInline, GenericInlineModelAdmin):
@@ -25,7 +25,3 @@ class PostAdmin(DatedAdmin, LikeAbleAdmin):
 class TextContentAdmin(admin.ModelAdmin):
     inlines = PostInline,
 
-
-@admin.register(Event)
-class EventAdmin(admin.ModelAdmin):
-    pass
