@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'core.apps.CoreConfig',
     'chat.apps.ChatConfig',
-    'usg.apps.UsgConfig',
+    'ugc.apps.UsgConfig',
     'likes.apps.LikesConfig',
     'events.apps.EventsConfig'
 ]

@@ -2,7 +2,7 @@ from django.apps import AppConfig
 
 
 class UsgConfig(AppConfig):
-    name = 'usg'
+    name = 'ugc'
 
     def ready(self):
-        from usg import signals
+        from ugc import signals

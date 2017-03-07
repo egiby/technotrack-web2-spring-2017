@@ -11,6 +11,8 @@ def check_friendship(instance, created=False, *args, **kwargs):
         friendship.second = instance.user
         friendship.save()
 
+        instance.delete()
+
 
 def add_pair(instance, created=False, *args, **kwargs):
     if created and not len(Friendship.objects.filter(second=instance.first,
